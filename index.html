@@ -15,6 +15,7 @@ body {
   text-align: center;
 }
 
+/* Pages */
 .page {
   display: none;
   min-height: 100vh;
@@ -39,6 +40,25 @@ h1 {
   text-align: left;
 }
 
+/* Teddy */
+.teddy {
+  width: 240px;
+  margin-top: 60px;
+  cursor: pointer;
+}
+
+/* Secret message */
+.secretText {
+  width: 90%;
+  margin: 20px auto;
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  color: #ff2e7a;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* Buttons */
 button {
   padding: 12px 25px;
   font-size: 18px;
@@ -63,11 +83,7 @@ button {
   color: white;
 }
 
-.teddy {
-  width: 240px;
-  margin-top: 60px;
-}
-
+/* Polaroids */
 .polaroid {
   background: white;
   padding: 10px;
@@ -86,11 +102,21 @@ button {
 <body>
 
 <div id="page1" class="page active">
-  <img src="200w.gif" class="teddy">
+
+  <img src="200w.gif" class="teddy" onclick="teddySecret()">
+
+  <p id="secretMessage" class="secretText">
+    I really didn't know I could be loved like this?<br><br>
+    I'm genuinely grateful to have you in my life.<br><br>
+    And I wish I want to be with you forever. My love you're my half.<br><br>
+    Your existence makes everything special for me my love.
+  </p>
+
   <h1>Will You Be My Valentine? 💖</h1>
 
   <button id="yesBtn">Yes</button>
   <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
+
 </div>
 
 <div id="page2" class="page">
@@ -132,11 +158,11 @@ button {
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
+  /* Yes button logic */
   let clickCount = 0;
   const yesBtn = document.getElementById("yesBtn");
 
   yesBtn.addEventListener("click", function() {
-
     if (clickCount < 3) {
       yesBtn.style.position = "relative";
       yesBtn.style.left = (Math.random() * 60 - 30) + "px";
@@ -146,11 +172,11 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("page1").classList.remove("active");
       document.getElementById("page2").classList.add("active");
     }
-
   });
 
 });
-  
+
+/* Page navigation */
 function goToPage3() {
   document.getElementById("page2").classList.remove("active");
   document.getElementById("page3").classList.add("active");
@@ -159,6 +185,15 @@ function goToPage3() {
 function goToPage4() {
   document.getElementById("page3").classList.remove("active");
   document.getElementById("page4").classList.add("active");
+}
+
+/* Teddy secret */
+let teddyClicks = 0;
+function teddySecret() {
+  teddyClicks++;
+  if (teddyClicks === 3) {
+    document.getElementById("secretMessage").style.opacity = "1";
+  }
 }
 </script>
 
