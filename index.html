@@ -130,21 +130,27 @@ button {
 </div>
 
 <script>
-let clickCount = 0;
-const yesBtn = document.getElementById("yesBtn");
+document.addEventListener("DOMContentLoaded", function() {
 
-yesBtn.addEventListener("click", function() {
-  if (clickCount < 3) {
-    yesBtn.style.position = "relative";
-    yesBtn.style.left = (Math.random() * 60 - 30) + "px";
-    yesBtn.style.top = (Math.random() * 60 - 30) + "px";
-    clickCount++;
-  } else {
-    document.getElementById("page1").classList.remove("active");
-    document.getElementById("page2").classList.add("active");
-  }
+  let clickCount = 0;
+  const yesBtn = document.getElementById("yesBtn");
+
+  yesBtn.addEventListener("click", function() {
+
+    if (clickCount < 3) {
+      yesBtn.style.position = "relative";
+      yesBtn.style.left = (Math.random() * 60 - 30) + "px";
+      yesBtn.style.top = (Math.random() * 60 - 30) + "px";
+      clickCount++;
+    } else {
+      document.getElementById("page1").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
+    }
+
+  });
+
 });
-
+  
 function goToPage3() {
   document.getElementById("page2").classList.remove("active");
   document.getElementById("page3").classList.add("active");
