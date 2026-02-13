@@ -5,80 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to bottom right, #ffe6f0, #ffd6eb);
-  overflow-x: hidden;
+  text-align: center;
 }
 
-/* Floating click hearts */
-.heart {
-  position: absolute;
-  pointer-events: none;
-  color: #ff6fa5;
-  animation: floatUp 4s linear forwards;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-80px); opacity: 0; }
-}
-
-/* Pages */
 .page {
   display: none;
   min-height: 100vh;
   padding: 30px 20px;
-  opacity: 0;
-  transition: opacity 0.6s ease;
 }
 
 .active {
   display: block;
-  opacity: 1;
-}
-
-.teddy {
-  width: 260px;
-  display: block;
-  margin: 60px auto 20px auto;
-  cursor: pointer;
 }
 
 h1 {
-  text-align: center;
-  font-size: 34px;
+  font-size: 32px;
   color: #ff2e7a;
 }
 
 .text {
   width: 95%;
-  margin: 40px auto;
-  font-size: 26px;
-  line-height: 2.2;
-  color: #444;
+  margin: 30px auto;
+  font-size: 24px;
+  line-height: 2;
   font-family: 'Great Vibes', cursive;
   text-align: left;
-  padding: 0 10px;
-}
-
-/* Buttons */
-.button-wrapper {
-  text-align: center;
 }
 
 button {
-  padding: 14px 28px;
+  padding: 12px 25px;
   font-size: 18px;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   margin: 15px;
-  transition: all 0.3s ease;
 }
 
 #yesBtn {
@@ -96,34 +63,22 @@ button {
   color: white;
 }
 
-.nextBtn:hover {
-  box-shadow: 0 0 15px rgba(255,77,136,0.6);
+.teddy {
+  width: 240px;
+  margin-top: 60px;
 }
 
-/* Polaroid effect */
 .polaroid {
   background: white;
-  padding: 12px;
-  width: 170px;
+  padding: 10px;
+  width: 160px;
   margin: 15px;
   display: inline-block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .polaroid img {
   width: 100%;
-}
-
-/* Final page styling */
-#page4 {
-  background: linear-gradient(to bottom right, #ffb3d1, #ff99c8);
-}
-
-.finalText {
-  text-align: center;
-  font-size: 38px;
-  color: #ff2e7a;
-  margin-top: 25vh;
 }
 </style>
 </head>
@@ -131,16 +86,11 @@ button {
 <body>
 
 <div id="page1" class="page active">
-
-  <img src="200w.gif" class="teddy" onclick="teddySecret()">
-
+  <img src="200w.gif" class="teddy">
   <h1>Will You Be My Valentine? 💖</h1>
 
-  <div class="button-wrapper">
-    <button id="yesBtn">Yes</button>
-    <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
-  </div>
-
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
 </div>
 
 <div id="page2" class="page">
@@ -154,7 +104,57 @@ button {
     I miss you more than I say sometimes. 🤍
   </p>
 
-  <div class="button-wrapper">
-    <button onclick="goToPage3()" class="nextBtn">Next</button>
-  </div>
+  <button class="nextBtn" onclick="goToPage3()">Next</button>
 </div>
+
+<div id="page3" class="page">
+  <h1>Look at this cutie 🍼</h1>
+
+  <div>
+    <div class="polaroid">
+      <img src="baby1.jpeg">
+    </div>
+
+    <div class="polaroid" style="transform: rotate(5deg);">
+      <img src="baby2.jpeg">
+    </div>
+  </div>
+
+  <p class="text">Wanna make a mini version like this? 🤭</p>
+
+  <button class="nextBtn" onclick="goToPage4()">Next</button>
+</div>
+
+<div id="page4" class="page">
+  <h1>I choose you. ❤️</h1>
+</div>
+
+<script>
+let clickCount = 0;
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click", function() {
+  if (clickCount < 3) {
+    yesBtn.style.position = "relative";
+    yesBtn.style.left = (Math.random() * 60 - 30) + "px";
+    yesBtn.style.top = (Math.random() * 60 - 30) + "px";
+    clickCount++;
+  } else {
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+  }
+});
+
+function goToPage3() {
+  document.getElementById("page2").classList.remove("active");
+  document.getElementById("page3").classList.add("active");
+}
+
+function goToPage4() {
+  document.getElementById("page3").classList.remove("active");
+  document.getElementById("page4").classList.add("active");
+}
+</script>
+
+</body>
+</html>
