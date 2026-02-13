@@ -13,13 +13,15 @@ body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to bottom right, #ffe6f0, #ffd6eb);
   text-align: center;
+  overflow-x: hidden;
 }
 
-/* Pages */
 .page {
   display: none;
   min-height: 100vh;
-  padding: 30px 20px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .active {
@@ -27,55 +29,52 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 28px;
   color: #ff2e7a;
+  margin-top: 20px;
 }
 
-/* Teddy + Cloud */
+/* Teddy */
 .teddy-wrapper {
-  position: relative;
-  display: inline-block;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .teddy {
-  width: 240px;
+  width: 200px;
+  margin-top: 40px;
   cursor: pointer;
 }
 
 .loveCloud {
-  position: absolute;
-  bottom: 250px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  width: 260px;
+  display: none;
+  width: 90%;
+  max-width: 340px;
   background: white;
-  padding: 15px;
-  border-radius: 20px;
+  padding: 20px;
+  border-radius: 25px;
   font-family: 'Great Vibes', cursive;
-  font-size: 22px;
+  font-size: 20px;
   color: #ff2e7a;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  transition: transform 0.5s ease;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   text-align: center;
-}
-
-.loveCloud.show {
-  transform: translateX(-50%) scale(1);
+  line-height: 1.6;
+  margin-bottom: 20px;
   animation: floatCloud 2s ease-in-out infinite alternate;
 }
 
 @keyframes floatCloud {
-  from { transform: translateX(-50%) translateY(0) scale(1); }
-  to { transform: translateX(-50%) translateY(-10px) scale(1); }
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
 }
 
 /* Text */
 .text {
   width: 95%;
   margin: 30px auto;
-  font-size: 24px;
-  line-height: 2;
+  font-size: 22px;
+  line-height: 1.8;
   font-family: 'Great Vibes', cursive;
   text-align: left;
 }
@@ -83,7 +82,7 @@ h1 {
 /* Buttons */
 button {
   padding: 12px 25px;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -109,8 +108,8 @@ button {
 .polaroid {
   background: white;
   padding: 10px;
-  width: 160px;
-  margin: 15px;
+  width: 140px;
+  margin: 10px;
   display: inline-block;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
@@ -118,15 +117,46 @@ button {
 .polaroid img {
   width: 100%;
 }
+
+/* Final Page Glow */
+.finalTitle {
+  font-size: 32px;
+  font-family: 'Great Vibes', cursive;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff8fc3; }
+  to { text-shadow: 0 0 20px #ff2e7a; }
+}
+
+.finalSub {
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  margin-top: 10px;
+  color: #ff4d88;
+}
+
+/* Heart Rain */
+.heart {
+  position: absolute;
+  color: #ff4d88;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
+<!-- PAGE 1 -->
 <div id="page1" class="page active">
-
   <div class="teddy-wrapper">
-    <img src="200w.gif" class="teddy" onclick="teddySecret()">
 
     <div id="secretMessage" class="loveCloud">
       I really didn't know, I could be loved like this ?<br><br>
@@ -134,15 +164,18 @@ button {
       And I wish I want to be with you forever. My love you're my half.
       Your existence makes everything special for me my love
     </div>
+
+    <img src="200w.gif" class="teddy" onclick="teddySecret()">
+
   </div>
 
   <h1>Will You Be My Valentine? 💖</h1>
 
   <button id="yesBtn">Yes</button>
   <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
-
 </div>
 
+<!-- PAGE 2 -->
 <div id="page2" class="page">
   <h1>Since you said yes…</h1>
 
@@ -157,6 +190,7 @@ button {
   <button class="nextBtn" onclick="goToPage3()">Next</button>
 </div>
 
+<!-- PAGE 3 -->
 <div id="page3" class="page">
   <h1>Look at this cutie 🍼</h1>
 
@@ -164,8 +198,7 @@ button {
     <div class="polaroid">
       <img src="baby1.jpeg">
     </div>
-
-    <div class="polaroid" style="transform: rotate(5deg);">
+    <div class="polaroid">
       <img src="baby2.jpeg">
     </div>
   </div>
@@ -175,49 +208,65 @@ button {
   <button class="nextBtn" onclick="goToPage4()">Next</button>
 </div>
 
+<!-- PAGE 4 -->
 <div id="page4" class="page">
-  <h1>I choose you. ❤️</h1>
+  <h1 class="finalTitle">I choose you ❤️</h1>
+  <div class="finalSub">And I’ll keep choosing you.</div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-  /* Yes button logic */
+  /* Yes Button */
   let clickCount = 0;
   const yesBtn = document.getElementById("yesBtn");
 
   yesBtn.addEventListener("click", function() {
     if (clickCount < 3) {
-      yesBtn.style.position = "relative";
-      yesBtn.style.left = (Math.random() * 60 - 30) + "px";
-      yesBtn.style.top = (Math.random() * 60 - 30) + "px";
+      yesBtn.style.left = (Math.random() * 50 - 25) + "px";
+      yesBtn.style.top = (Math.random() * 50 - 25) + "px";
       clickCount++;
     } else {
-      document.getElementById("page1").classList.remove("active");
-      document.getElementById("page2").classList.add("active");
+      switchPage("page1","page2");
     }
   });
 
 });
 
-/* Page navigation */
-function goToPage3() {
-  document.getElementById("page2").classList.remove("active");
-  document.getElementById("page3").classList.add("active");
+/* Navigation */
+function switchPage(from,to){
+  document.getElementById(from).classList.remove("active");
+  document.getElementById(to).classList.add("active");
+
+  if(to === "page4"){
+    startHeartRain();
+  }
 }
 
-function goToPage4() {
-  document.getElementById("page3").classList.remove("active");
-  document.getElementById("page4").classList.add("active");
-}
+function goToPage3(){ switchPage("page2","page3"); }
+function goToPage4(){ switchPage("page3","page4"); }
 
-/* Teddy secret */
+/* Teddy Secret */
 let teddyClicks = 0;
 function teddySecret() {
   teddyClicks++;
   if (teddyClicks === 3) {
-    document.getElementById("secretMessage").classList.add("show");
+    document.getElementById("secretMessage").style.display = "block";
   }
+}
+
+/* Heart Rain */
+function startHeartRain(){
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }, 400);
 }
 </script>
 
