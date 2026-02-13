@@ -31,6 +31,46 @@ h1 {
   color: #ff2e7a;
 }
 
+/* Teddy + Cloud */
+.teddy-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 60px;
+}
+
+.teddy {
+  width: 240px;
+  cursor: pointer;
+}
+
+.loveCloud {
+  position: absolute;
+  bottom: 250px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 260px;
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  color: #ff2e7a;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transition: transform 0.5s ease;
+  text-align: center;
+}
+
+.loveCloud.show {
+  transform: translateX(-50%) scale(1);
+  animation: floatCloud 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatCloud {
+  from { transform: translateX(-50%) translateY(0) scale(1); }
+  to { transform: translateX(-50%) translateY(-10px) scale(1); }
+}
+
+/* Text */
 .text {
   width: 95%;
   margin: 30px auto;
@@ -38,24 +78,6 @@ h1 {
   line-height: 2;
   font-family: 'Great Vibes', cursive;
   text-align: left;
-}
-
-/* Teddy */
-.teddy {
-  width: 240px;
-  margin-top: 60px;
-  cursor: pointer;
-}
-
-/* Secret message */
-.secretText {
-  width: 90%;
-  margin: 20px auto;
-  font-family: 'Great Vibes', cursive;
-  font-size: 26px;
-  color: #ff2e7a;
-  opacity: 0;
-  transition: opacity 1s ease;
 }
 
 /* Buttons */
@@ -103,14 +125,16 @@ button {
 
 <div id="page1" class="page active">
 
-  <img src="200w.gif" class="teddy" onclick="teddySecret()">
+  <div class="teddy-wrapper">
+    <img src="200w.gif" class="teddy" onclick="teddySecret()">
 
-  <p id="secretMessage" class="secretText">
-    I really didn't know I could be loved like this?<br><br>
-    I'm genuinely grateful to have you in my life.<br><br>
-    And I wish I want to be with you forever. My love you're my half.<br><br>
-    Your existence makes everything special for me my love.
-  </p>
+    <div id="secretMessage" class="loveCloud">
+      I really didn't know, I could be loved like this ?<br><br>
+      I'm genuinely grateful to have you in my life<br><br>
+      And I wish I want to be with you forever. My love you're my half.
+      Your existence makes everything special for me my love
+    </div>
+  </div>
 
   <h1>Will You Be My Valentine? 💖</h1>
 
@@ -192,7 +216,7 @@ let teddyClicks = 0;
 function teddySecret() {
   teddyClicks++;
   if (teddyClicks === 3) {
-    document.getElementById("secretMessage").style.opacity = "1";
+    document.getElementById("secretMessage").classList.add("show");
   }
 }
 </script>
