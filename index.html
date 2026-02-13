@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #ffe6f0, #ffd6eb);
+  text-align: center;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.active {
+  display: block;
+}
+
+h1 {
+  margin-top: 20vh;
+  font-size: 32px;
+  color: #ff2e7a;
+}
+
+.text {
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+#yesBtn {
+  background: #ff4d88;
+  color: white;
+  position: relative;
+}
+
+#noBtn {
+  background: #ccc;
+}
+
+.nextBtn {
+  background: #ff4d88;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="page1" class="page active">
+  <h1>Will You Be My Valentine? 💖</h1>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
+</div>
+
+<div id="page2" class="page">
+  <h1>Since you said yes…</h1>
+  <p class="text">
+    Happy Valentine’s Day, my love.<br><br>
+
+    I love you so much. I really love the way we get along with each other,
+    and teasing you is honestly my favorite part. Being with you just feels easy and natural.<br><br>
+
+    I want to spend more time with you, talk more, laugh more, and just be around you.
+    I wish I could hug you right now and make sure you’re okay.<br><br>
+
+    I miss you a lot. More than I say sometimes.<br><br>
+
+    Muaah 🤍
+  </p>
+  <button onclick="goToPage3()" class="nextBtn">Next</button>
+</div>
+
+<div id="page3" class="page">
+  <h1>Look at this cutie 🍼</h1>
+  <p class="text">We’ll add baby pictures here later 😌</p>
+  <button onclick="goToPage4()" class="nextBtn">Next</button>
+</div>
+
+<div id="page4" class="page">
+  <h1>My Feelings ❤️</h1>
+  <p class="text">
+    I feel lucky to have you. Even when we can’t be together physically,
+    you’re still my favorite person. Thank you for being you.
+  </p>
+</div>
+
+<script>
+let clickCount = 0;
+
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.onclick = function () {
+  if (clickCount < 3) {
+    const x = Math.random() * 80 - 40;
+    const y = Math.random() * 80 - 40;
+    yesBtn.style.left = x + "px";
+    yesBtn.style.top = y + "px";
+    clickCount++;
+  } else {
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+  }
+};
+
+function goToPage3() {
+  document.getElementById("page2").classList.remove("active");
+  document.getElementById("page3").classList.add("active");
+}
+
+function goToPage4() {
+  document.getElementById("page3").classList.remove("active");
+  document.getElementById("page4").classList.add("active");
+}
+</script>
+
+</body>
+</html>
