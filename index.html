@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -11,7 +12,6 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to bottom right, #ffe6f0, #ffd6eb);
-  text-align: center;
   overflow-x: hidden;
 }
 
@@ -33,7 +33,7 @@ body {
 .page {
   display: none;
   min-height: 100vh;
-  padding: 20px;
+  padding: 30px 20px;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -46,28 +46,35 @@ body {
 .teddy {
   width: 260px;
   display: block;
-  margin: 80px auto 20px auto;
+  margin: 60px auto 20px auto;
 }
 
 h1 {
-  font-size: 36px;
+  text-align: center;
+  font-size: 34px;
   color: #ff2e7a;
-  margin: 10px 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .text {
-  max-width: 90%;
-  margin: 30px auto;
-  font-size: 30px;
-  line-height: 2;
+  width: 95%;
+  margin: 40px auto;
+  font-size: 26px;
+  line-height: 2.2;
   color: #444;
   font-family: 'Great Vibes', cursive;
+  text-align: left;
+  padding: 0 10px;
   opacity: 0;
   animation: fadeIn 1.5s forwards;
 }
 
 @keyframes fadeIn {
   to { opacity: 1; }
+}
+
+.button-wrapper {
+  text-align: center;
 }
 
 button {
@@ -96,16 +103,16 @@ button {
 }
 
 .finalText {
-  font-size: 40px;
+  text-align: center;
+  font-size: 38px;
   color: #ff2e7a;
-  margin-top: 20vh;
+  margin-top: 25vh;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts generator -->
 <script>
 function createHeart() {
   const heart = document.createElement("div");
@@ -126,8 +133,10 @@ setInterval(createHeart, 800);
 
   <h1>Will You Be My Valentine? 💖</h1>
 
-  <button id="yesBtn">Yes</button>
-  <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
+  <div class="button-wrapper">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn" onclick="alert('Wrong answer 😌')">No</button>
+  </div>
 
 </div>
 
@@ -147,19 +156,27 @@ setInterval(createHeart, 800);
     I miss you more than I say sometimes. 🤍
   </p>
 
-  <button onclick="goToPage3()" class="nextBtn">Next</button>
+  <div class="button-wrapper">
+    <button onclick="goToPage3()" class="nextBtn">Next</button>
+  </div>
 
 </div>
 
 <div id="page3" class="page">
   <h1>Look at this cutie 🍼</h1>
   <p class="text">Wanna make a mini version like this? 🤭</p>
-  <button onclick="goToPage4()" class="nextBtn">Next</button>
+
+  <div class="button-wrapper">
+    <button onclick="goToPage4()" class="nextBtn">Next</button>
+  </div>
 </div>
 
 <div id="page4" class="page">
   <div class="finalText">I choose you. ❤️</div>
-  <button class="nextBtn" onclick="shakeButton(this)">Forever?</button>
+
+  <div class="button-wrapper">
+    <button class="nextBtn" onclick="shakeButton(this)">Forever?</button>
+  </div>
 </div>
 
 <script>
